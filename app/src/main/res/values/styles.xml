@@ -1,8 +1,79 @@
 <resources>
 
-    <!-- Base application theme. -->
+    <!-- Start of styles for the application Theme -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
     </style>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    <!-- End of styles for the application Theme -->
+
+    <!-- ******************* -->
+
+    <!-- Start of styles for fragment_expression_publisher.xml -->
+    <style name="expressionPublisherFragmentParentLayout">
+        <item name="android:padding">16dp</item>
+    </style>
+    <style name="langageField">
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingTop">16dp</item>
+    </style>
+    <style name="publishButton">
+        <item name="android:paddingLeft">32dp</item>
+        <item name="android:paddingRight">32dp</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+        <item name="android:textColor">@color/FontLight</item>
+        <item name="android:background">@drawable/button_publish</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:typeface">serif</item>
+    </style>
+    <style name="expressionToTranslate">
+        <item name="android:height">150dp</item>
+    </style>
+    <!-- End of styles for fragment_expression_publisher.xml -->
+
+    <!-- ******************* -->
+
+    <!-- Start of styles for fragment_expression_list.xml -->
+    <style name="expressionListFragment">
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+    <style name="expressionListFragmentSearchViewLayout">
+        <item name="android:background">@color/BackgroundLight</item>
+        <item name="android:padding">16dp</item>
+    </style>
+    <style name="expressionListSearchView">
+        <item name="android:background">@color/BackgroundLight</item>
+        <item name="android:layout_marginBottom">16dp</item>
+    </style>
+    <style name="expressionListFragmentListView">
+        <item name="android:padding">16dp</item>
+        <item name="android:background">@drawable/expression_listview</item>
+
+    </style>
+    <!-- End of styles for fragment_expression_list.xml -->
+
+    <!-- ******************* -->
+
+    <!-- Start of styles for item_expression_list.xml -->
+    <style name="expressionListItem">
+        <item name="android:padding">10dp</item>
+    </style>
+    <style name="expressionListTextViewItem">
+        <item name="android:padding">10dp</item>
+        <item name="android:textSize">16sp</item>
+
+    </style>
+    <style name="expressionListImageViewItem">
+        <item name="android:padding">10dp</item>
+    </style>
+    <!-- End of styles for item_expression_list.xml -->
 
 </resources>
