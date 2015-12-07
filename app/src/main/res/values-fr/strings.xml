@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_settings">Propriétés</string>
-    <string name="expressionListSearchViewHint">Recherche d\'un mot, phrase, texte…</string>
     <string name="expressionPlaceholder">Entrez votre texte !</string>
     <string name="langagePlaceholder">Langage</string>
     <string name="navigation_drawer_close">Fermer le menu de navigation</string>
     <string name="navigation_drawer_open">Fermer le menu de navigation</string>
     <string name="publishButtonLabel">Publier</string>
+    <string name="drawer_menu_profil1">Profil 1</string>
+    <string name="drawer_menu_profil2">Profil 2</string>
+    <string name="drawer_menu_profil3">Profil 3</string>
 </resources>
