@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/drawer_menu_profil1" android:icon="@android:drawable/ic_menu_gallery"
+            android:title="@string/drawer_menu_profil1" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item android:id="@+id/drawer_menu_profil2" android:icon="@android:drawable/ic_menu_gallery"
+                android:title="@string/drawer_menu_profil2" />
+            <item android:id="@+id/drawer_menu_profil3" android:icon="@android:drawable/ic_menu_gallery"
+                android:title="@string/drawer_menu_profil3" />
+        </menu>
+    </item>
+
+</menu>

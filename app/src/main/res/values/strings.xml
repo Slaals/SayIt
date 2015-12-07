@@ -2,4 +2,15 @@
 <resources>
     <string name="app_name" translatable="false">SayIt</string>
     <string name="title_activity_main" translatable="false">SayIt</string>
+    <string name="action_settings">Settings</string>
+    <string name="expressionListSearchViewHint">Search for a word, sentence, text…</string>
+    <string name="langagePlaceholder">Language</string>
+    <string name="expressionPlaceholder">Enter your text here !</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="publishButtonLabel">Publish</string>
+    <string name="drawer_menu_profil">Profil</string>
+    <string name="drawer_menu_profil3">Profil 3</string>
+    <string name="drawer_menu_profil2">Profil 2</string>
+    <string name="drawer_menu_profil1">Profil 1</string>
 </resources>

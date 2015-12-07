@@ -4,4 +4,5 @@
     <color name="FontLight">#FFF</color>
     <color name="BackgroundLight">#DDD</color>
     <color name="BackgroundUltraLight">#FFF</color>
+    <color name="accent_material_light">#ff9900</color>
 </resources>
