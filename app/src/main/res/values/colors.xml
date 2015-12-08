@@ -5,4 +5,6 @@
     <color name="BackgroundLight">#DDD</color>
     <color name="BackgroundUltraLight">#FFF</color>
     <color name="accent_material_light">#ff9900</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

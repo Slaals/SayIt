@@ -10,12 +10,14 @@
     tools:showIn="@layout/app_bar_main">
 
     <fragment
+        android:id="@+id/expressionPublisherFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:name="fr.utt.if26.sayit.fragment.ExpressionPublisherFragment"
         tools:layout="@layout/fragment_expression_publisher"/>
 
     <fragment
+        android:id="@+id/expressionListFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:name="fr.utt.if26.sayit.fragment.ExpressionListFragment"
