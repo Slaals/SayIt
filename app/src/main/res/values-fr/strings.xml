@@ -9,4 +9,8 @@
     <string name="drawer_menu_profil1">Profil 1</string>
     <string name="drawer_menu_profil2">Profil 2</string>
     <string name="drawer_menu_profil3">Profil 3</string>
+    <string name="action_sign_in">Se connecter</string>
+    <string name="prompt_password">Mot de passe</string>
+    <string name="prompt_username">Identifiant</string>
+    <string name="loginActivityTitle">Se connecter</string>
 </resources>

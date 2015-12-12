@@ -41,19 +41,4 @@ public class ExpressionListFragment extends Fragment {
         listView.setAdapter(new ExpressionListAdapter(this.getActivity(), R.layout.item_expression_list, listCity));
         return view;
     }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
 }
