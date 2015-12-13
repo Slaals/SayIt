@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -21,6 +19,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import fr.utt.if26.sayit.R;
+import fr.utt.if26.sayit.fragment.ExpressionListFragment;
 import fr.utt.if26.sayit.fragment.PublishFragment;
 import fr.utt.if26.sayit.utils.SharedPreferencesManager;
 
@@ -36,33 +35,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (permanentUserToken == null) {
             // Open the login activity
             Intent openLoginActivity = new Intent(this, LoginActivity.class);
-            openLoginActivity.setFlags(openLoginActivity.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
+            openLoginActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(openLoginActivity);
         }
 
-        setContentView(R.layout.activity_classic);
+        setContentView(R.layout.activity_main);
 
-        FragmentManager fm = getSupportFragmentManager();
-        FragmentTransaction ft = fm.beginTransaction();
-
-        PublishFragment publishFragment = new PublishFragment();
-        ft.replace(R.id.mainContentLayout, publishFragment);
-        ft.commit();
+        // Display the expression list screen
+        navigateToExpressionListScreen();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setIcon(R.mipmap.logo_sayit);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
@@ -80,6 +66,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    private void navigateToPublishScreen() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        PublishFragment publishFragment = new PublishFragment();
+        fragmentTransaction.replace(R.id.mainContentLayout, publishFragment);
+        fragmentTransaction.commit();
+    }
+
+    private void navigateToExpressionListScreen() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ExpressionListFragment expressionListFragment = new ExpressionListFragment();
+        fragmentTransaction.replace(R.id.mainContentLayout, expressionListFragment);
+        fragmentTransaction.commit();
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -92,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -100,7 +102,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         switch (id) {
-            case R.id.action_settings:
+            case R.id.action_menu_1:
+                break;
+            case R.id.action_menu_2:
+                break;
+            case R.id.action_menu_3:
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -109,13 +115,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        FragmentManager fm = getSupportFragmentManager();
+        int count = fm.getBackStackEntryCount();
+        for(int i = 0; i < count; ++i) {
+            fm.popBackStack();
+        }
         int id = item.getItemId();
         switch (id) {
-            case R.id.drawer_menu_profil1:
+            case R.id.drawerMenuNavigationPublish:
+                navigateToPublishScreen();
                 break;
-            case R.id.drawer_menu_profil2:
-                break;
-            case R.id.drawer_menu_profil3:
+            case R.id.drawerMenuNavigationPublication:
+                navigateToExpressionListScreen();
                 break;
         }
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="action_settings">Propriétés</string>
-    <string name="expressionPlaceholder">Entrez votre texte !</string>
     <string name="langagePlaceholder">Langage</string>
     <string name="navigation_drawer_close">Fermer le menu de navigation</string>
     <string name="navigation_drawer_open">Fermer le menu de navigation</string>
@@ -13,4 +12,9 @@
     <string name="prompt_password">Mot de passe</string>
     <string name="prompt_username">Identifiant</string>
     <string name="loginActivityTitle">Se connecter</string>
+    <string name="expressionSearchViewQueryHint">Rechercher un mot, une phrase ou un texte</string>
+    <string name="publishActivityTitle">Publier</string>
+    <string name="drawMainNavigationLabel">Navigation</string>
+    <string name="drawerMenuNavigationPublication">Publications</string>
+    <string name="drawerMenuNavigationPublish">Publier quelque chose</string>
 </resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="@string/drawMainNavigationLabel">
+        <menu>
+            <item
+                android:id="@+id/drawerMenuNavigationPublish"
+                android:icon="@android:drawable/ic_menu_send"
+                android:title="@string/drawerMenuNavigationPublish" />
+            <item
+                android:id="@+id/drawerMenuNavigationPublication"
+                android:icon="@android:drawable/ic_menu_agenda"
+                android:title="@string/drawerMenuNavigationPublication" />
+        </menu>
+    </item>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/drawer_menu_profil1"
+                android:icon="@android:drawable/ic_menu_gallery"
+                android:title="@string/drawer_menu_profil1" />
+            <item
+                android:id="@+id/drawer_menu_profil2"
+                android:icon="@android:drawable/ic_menu_gallery"
+                android:title="@string/drawer_menu_profil2" />
+            <item
+                android:id="@+id/drawer_menu_profil3"
+                android:icon="@android:drawable/ic_menu_gallery"
+                android:title="@string/drawer_menu_profil3" />
+        </menu>
+    </item>
+
+</menu>

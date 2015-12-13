@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="fr.utt.if26.sayit">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="fr.utt.if26.sayit">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
@@ -10,7 +12,8 @@
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/mainActivityTitle"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -19,8 +22,7 @@
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/loginActivityTitle"
-            android:windowSoftInputMode="adjustResize|stateHidden">
-        </activity>
+            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
     </application>
 
 </manifest>

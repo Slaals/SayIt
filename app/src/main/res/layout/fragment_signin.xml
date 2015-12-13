@@ -26,7 +26,7 @@
         android:imeOptions="actionUnspecified"
         android:inputType="textPassword"
         android:maxLines="1"
-        android:singleLine="true"/>
+        android:singleLine="true" />
 
     <Button
         android:id="@+id/signInButton"
@@ -44,6 +44,6 @@
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
         android:layout_weight="5.44"
-        android:visibility="gone"/>
+        android:visibility="gone" />
 
 </LinearLayout>
