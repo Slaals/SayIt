@@ -21,7 +21,7 @@ import fr.utt.if26.sayit.R;
 import fr.utt.if26.sayit.activity.MainActivity;
 import fr.utt.if26.sayit.utils.SharedPreferencesManager;
 
-public class SigninFragmentBackup extends Fragment {
+public class SignInFragment extends Fragment {
 
     private TextView usernameView;
     private TextView passwordView;
