@@ -8,7 +8,7 @@ public class SharedPreferencesManager {
     /* ------------------------------------- */
 
     /* Start of UserPreferences */
-    public static final String PERMANENT_TOKEN = "permanentToken";
-    public static final String USERNAME = "username";
+    public static final String USER_PREFERENCES_PERMANENT_TOKEN = "permanentToken";
+    public static final String USER_PREFERENCES_USERNAME = "username";
     /* End of UserPreferences */
 }

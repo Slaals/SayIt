@@ -62,11 +62,15 @@ public class SignInFragment extends Fragment {
                             if (jsonObject.getBoolean("success")) {
                                 SharedPreferences sharedPreferences = getContext().getSharedPreferences(SharedPreferencesManager.USER_PREFERENCES, Context.MODE_PRIVATE);
                                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString(SharedPreferencesManager.PERMANENT_TOKEN, jsonObject.getString("token"));
+
+                                // Save permanent token and username into shared preferences
+                                editor.putString(SharedPreferencesManager.USER_PREFERENCES_PERMANENT_TOKEN, jsonObject.getString("token"));
+                                editor.putString(SharedPreferencesManager.USER_PREFERENCES_USERNAME, jsonObject.getString("id"));
+
                                 editor.apply();
                                 Intent openMainActivity = new Intent(getContext(), MainActivity.class);
-                                openMainActivity.setFlags(openMainActivity.getFlags() | Intent.FLAG_ACTIVITY_NO_HISTORY);
                                 startActivity(openMainActivity);
+                                getActivity().finish();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

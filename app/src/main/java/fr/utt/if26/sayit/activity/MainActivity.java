@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
 
 import fr.utt.if26.sayit.R;
 import fr.utt.if26.sayit.fragment.ExpressionListFragment;
@@ -25,26 +26,35 @@ import fr.utt.if26.sayit.utils.SharedPreferencesManager;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    TextView drawerUsernameView;
+    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Verify wheter the user is logged in
         SharedPreferences sharedPreferences = getSharedPreferences(SharedPreferencesManager.USER_PREFERENCES, Context.MODE_PRIVATE);
-        String permanentUserToken = sharedPreferences.getString(SharedPreferencesManager.PERMANENT_TOKEN, null);
+        String permanentUserToken = sharedPreferences.getString(SharedPreferencesManager.USER_PREFERENCES_PERMANENT_TOKEN, null);
         if (permanentUserToken == null) {
             // Open the login activity
             Intent openLoginActivity = new Intent(this, LoginActivity.class);
-            openLoginActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(openLoginActivity);
+            finish();
+            return;
         }
 
         setContentView(R.layout.activity_main);
 
+        // Write username into drawer header
+        String drawerUsername = sharedPreferences.getString(SharedPreferencesManager.USER_PREFERENCES_USERNAME, null);
+        drawerUsernameView = (TextView) ((NavigationView) findViewById(R.id.nav_view)).getHeaderView(0).findViewById(R.id.drawerUsername);
+        drawerUsernameView.setText(drawerUsername);
+
         // Display the expression list screen
         navigateToExpressionListScreen();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -117,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         FragmentManager fm = getSupportFragmentManager();
         int count = fm.getBackStackEntryCount();
-        for(int i = 0; i < count; ++i) {
+        for (int i = 0; i < count; ++i) {
             fm.popBackStack();
         }
         int id = item.getItemId();
