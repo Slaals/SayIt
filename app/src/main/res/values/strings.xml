@@ -26,7 +26,7 @@
     <string name="expressionSearchViewQueryHint">Search for a word, sentence or text</string>
     <string name="drawMainNavigationLabel">Navigation</string>
     <string name="drawerMenuNavigationPublish">Publish something</string>
-    <string name="drawerMenuNavigationPublication">Publications</string>
+    <string name="drawerMenuNavigationPublication">List of publications</string>
     <string name="expressionPlaceholder">Enter your text here</string>
 
 </resources>

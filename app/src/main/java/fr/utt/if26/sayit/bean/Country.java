@@ -1,5 +1,7 @@
 package fr.utt.if26.sayit.bean;
 
+import android.support.annotation.Nullable;
+
 import fr.utt.if26.sayit.R;
 
 public enum Country {
@@ -18,6 +20,16 @@ public enum Country {
 
     public int getDrawableResource() {
         return drawableResource;
+    }
+
+    @Nullable
+    public static Country getByIsoCode(String isoCode) {
+        for (Country country : Country.values()) {
+            if (country.getIsoCode().equals(isoCode)) {
+                return country;
+            }
+        }
+        return null;
     }
 
     public String getIsoCode() {

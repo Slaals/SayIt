@@ -24,4 +24,15 @@ public class ItSaysEndpoints extends ApiHttpClient {
             client.launchApiCall(callback);
         }
     }
+
+    public static class PublicationEndpoint {
+
+        public static void publications(String accessToken, ApiCallFinished callback) {
+            ApiHttpClient client = new ApiHttpClient();
+            client.setRelativeEndpointPath("/publications");
+            client.setHttpMethod(EnumHttpMethod.GET);
+            client.addHeaderParam("x-access-token", accessToken);
+            client.launchApiCall(callback);
+        }
+    }
 }

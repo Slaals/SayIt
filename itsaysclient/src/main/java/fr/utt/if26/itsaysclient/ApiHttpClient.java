@@ -31,11 +31,13 @@ public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
 
     private HashMap<String, String> bodyParams;
     private HashMap<String, String> queryParams;
+    private HashMap<String, String> headerParams;
     private String relativeEndpointPath;
 
     public ApiHttpClient() {
         bodyParams = new HashMap<>();
         queryParams = new HashMap<>();
+        headerParams = new HashMap<>();
     }
 
     public void setBodyParamType(EnumBodyParamType bodyParamType) {
@@ -92,9 +94,15 @@ public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
             url = new URL(urlString.toString());
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod(httpMethod.name());
+
+            for (Map.Entry<String, String> header : headerParams.entrySet()) {
+                urlConnection.setRequestProperty(header.getKey(), header.getValue());
+            }
+
             urlConnection.connect();
 
-            // DEBUG : System.out.println("Call to ItSays API : " + urlString.toString() + " - HTTP/" + urlConnection.getResponseCode() + " (" + urlConnection.getResponseMessage() + ")");
+            // DEBUG
+            System.out.println("Call to ItSays API : " + urlString.toString() + " - HTTP/" + urlConnection.getResponseCode() + " (" + urlConnection.getResponseMessage() + ")");
 
             /* Initialize output stream for write the HTTP request body */
             if (!bodyParams.isEmpty()) {
@@ -139,6 +147,10 @@ public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
     /* ------------------- */
     public void addQueryParam(String key, String value) {
         queryParams.put(key, value);
+    }
+
+    public void addHeaderParam(String key, String value) {
+        headerParams.put(key, value);
     }
 
     public void addBodyParam(String key, String value) {
