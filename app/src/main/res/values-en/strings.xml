@@ -15,6 +15,17 @@
     <string name="expressionSearchViewQueryHint">Search for a word, sentence or text</string>
     <string name="publishActivityTitle">Publish</string>
     <string name="drawMainNavigationLabel">Navigation</string>
-    <string name="drawerMenuNavigationPublication">List of publications</string>
+    <string name="drawerMenuNavigationPublications">List of publications</string>
     <string name="drawerMenuNavigationPublish">Publish something</string>
+    <string name="drawerMenuNavigationLogout">Logout</string>
+    <string name="signInFailedInvalidCredentials">Invalid credentials</string>
+    <string name="signInFailedUnableToConnect">Unable to connect to API</string>
+    <string name="action_sign_in_loading">Signing in…</string>
+    <string name="action_sign_up">Sign up</string>
+    <string name="expressionPlaceholder">Entrez votre texte ici</string>
+    <string name="prompt_password_repeat">Repeat password</string>
+    <string name="action_sign_up_loading">Signing up…</string>
+    <string name="signUpFailedPasswordDoesntMatch">Passwords doesn\'t match…</string>
+    <string name="signUpSucceeded">Sign up succeeded !</string>
+    <string name="signUpFailedUnknownError">Sign up failed… Unknown error</string>
 </resources>

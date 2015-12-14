@@ -15,6 +15,17 @@
     <string name="expressionSearchViewQueryHint">Rechercher un mot, une phrase ou un texte</string>
     <string name="publishActivityTitle">Publier</string>
     <string name="drawMainNavigationLabel">Navigation</string>
-    <string name="drawerMenuNavigationPublication">Liste des publications</string>
     <string name="drawerMenuNavigationPublish">Publier quelque chose</string>
+    <string name="drawerMenuNavigationPublications">Liste des publications</string>
+    <string name="drawerMenuNavigationLogout">Déconnexion</string>
+    <string name="signInFailedInvalidCredentials">Identifiants invalides</string>
+    <string name="signInFailedUnableToConnect">Connexion impossible à l\'API</string>
+    <string name="action_sign_in_loading">Connexion en cours…</string>
+    <string name="action_sign_up">Inscription</string>
+    <string name="expressionPlaceholder">Entrez votre texte ici</string>
+    <string name="prompt_password_repeat">Répétition du mot de passe</string>
+    <string name="action_sign_up_loading">Inscriptions en cours…</string>
+    <string name="signUpFailedPasswordDoesntMatch">Les mot de passes ne correspondent pas…</string>
+    <string name="signUpSucceeded">Inscription réussie !</string>
+    <string name="signUpFailedUnknownError">Inscription échouée… Erreur inconnue</string>
 </resources>

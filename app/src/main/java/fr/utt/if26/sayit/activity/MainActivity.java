@@ -37,9 +37,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         SharedPreferences sharedPreferences = getSharedPreferences(SharedPreferencesManager.USER_PREFERENCES, Context.MODE_PRIVATE);
         String permanentUserToken = sharedPreferences.getString(SharedPreferencesManager.USER_PREFERENCES_PERMANENT_TOKEN, null);
         if (permanentUserToken == null) {
-            // Open the login activity
+            clearLoginCredentials();
             Intent openLoginActivity = new Intent(this, LoginActivity.class);
             startActivity(openLoginActivity);
+            /*
+            finish() and return are crucial for kill MainActivity when LoginActivity opens
+            Actually, kill MainActivity prevent the user to use the back button being into
+            the the login screen and simply bypass it
+            */
             finish();
             return;
         }
@@ -74,6 +79,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    public void clearLoginCredentials() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SharedPreferencesManager.USER_PREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        // Save permanent token and username into shared preferences
+        editor.remove(SharedPreferencesManager.USER_PREFERENCES_PERMANENT_TOKEN);
+        editor.remove(SharedPreferencesManager.USER_PREFERENCES_USERNAME);
+
+        editor.apply();
     }
 
     private void navigateToPublishScreen() {
@@ -135,8 +151,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.drawerMenuNavigationPublish:
                 navigateToPublishScreen();
                 break;
-            case R.id.drawerMenuNavigationPublication:
+            case R.id.drawerMenuNavigationPublications:
                 navigateToExpressionListScreen();
+                break;
+            case R.id.drawerMenuNavigationLogout:
+                clearLoginCredentials();
+                Intent openLoginActivity = new Intent(this, LoginActivity.class);
+                startActivity(openLoginActivity);
+                /*
+                finish() is crucial for kill MainActivity when LoginActivity opens
+                Actually, kill MainActivity prevent the user to use the back button being into
+                the the login screen and simply bypass it
+                */
+                finish();
                 break;
         }
 

@@ -8,7 +8,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -18,13 +20,21 @@ import org.json.JSONObject;
 import fr.utt.if26.itsaysclient.ApiHttpClient;
 import fr.utt.if26.itsaysclient.ItSaysEndpoints;
 import fr.utt.if26.sayit.R;
+import fr.utt.if26.sayit.SayItApplication;
 import fr.utt.if26.sayit.activity.MainActivity;
 import fr.utt.if26.sayit.utils.SharedPreferencesManager;
 
 public class SignInFragment extends Fragment {
 
+    public interface SignUpButtonClickListener {
+        void onSignUpButtonClicked();
+    }
+
     private TextView usernameView;
     private TextView passwordView;
+    private LinearLayout signInButtonView;
+    private LinearLayout signUpButtonView;
+    private TextView signInButtonLabelView;
     private ProgressBar progressBarView;
 
     @Override
@@ -36,48 +46,88 @@ public class SignInFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_signin, container, false);
-        usernameView = (TextView) view.findViewById(R.id.loginUsername);
+        usernameView = (TextView) view.findViewById(R.id.signUpUsername);
         passwordView = (TextView) view.findViewById(R.id.loginPassword);
         progressBarView = (ProgressBar) view.findViewById(R.id.loginProgressBar);
-        return view;
-    }
+        signUpButtonView = (LinearLayout) view.findViewById(R.id.signUpButton);
+        signInButtonView = (LinearLayout) view.findViewById(R.id.signInButton);
+        signInButtonLabelView = (TextView) view.findViewById(R.id.signInButtonLabel);
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        Button signInButton = (Button) view.findViewById(R.id.signInButton);
-        signInButton.setOnClickListener(new View.OnClickListener() {
+        // Start logo animation
+        Animation bounceAnimation = AnimationUtils.loadAnimation(getContext(), R.anim.bounce);
+        bounceAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+            }
+        });
+        view.findViewById(R.id.logoSayItLogin).startAnimation(bounceAnimation);
+
+        signInButtonView = (LinearLayout) view.findViewById(R.id.signInButton);
+        signInButtonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String username = usernameView.getText().toString();
                 String password = passwordView.getText().toString();
 
                 progressBarView.setVisibility(View.VISIBLE);
+                signInButtonView.setEnabled(false);
+                signInButtonLabelView.setText(R.string.action_sign_in_loading);
 
                 // Call the SignIn endpoint of ItSays API
-                ItSaysEndpoints.UserEndpoint.signin(username, password, new ApiHttpClient.ApiCallFinished() {
+                ItSaysEndpoints.UserEndpoint.signin(username, password, getContext(), new ApiHttpClient.ApiCallFinished() {
                     @Override
-                    public void onApiCallFinished(JSONObject jsonObject) {
+                    public void onApiCallCompleted() {
                         progressBarView.setVisibility(View.GONE);
+                        signInButtonView.setEnabled(true);
+                        signInButtonLabelView.setText(R.string.action_sign_in);
+                    }
+
+                    @Override
+                    public void onApiCallSucceeded(JSONObject jsonObject) {
                         try {
-                            if (jsonObject.getBoolean("success")) {
-                                SharedPreferences sharedPreferences = getContext().getSharedPreferences(SharedPreferencesManager.USER_PREFERENCES, Context.MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                            SharedPreferences sharedPreferences = getContext().getSharedPreferences(SharedPreferencesManager.USER_PREFERENCES, Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                                // Save permanent token and username into shared preferences
-                                editor.putString(SharedPreferencesManager.USER_PREFERENCES_PERMANENT_TOKEN, jsonObject.getString("token"));
-                                editor.putString(SharedPreferencesManager.USER_PREFERENCES_USERNAME, jsonObject.getString("id"));
+                            // Save permanent token and username into shared preferences
+                            editor.putString(SharedPreferencesManager.USER_PREFERENCES_PERMANENT_TOKEN, jsonObject.getString("token"));
+                            editor.putString(SharedPreferencesManager.USER_PREFERENCES_USERNAME, jsonObject.getString("id"));
 
-                                editor.apply();
-                                Intent openMainActivity = new Intent(getContext(), MainActivity.class);
-                                startActivity(openMainActivity);
-                                getActivity().finish();
-                            }
+                            editor.apply();
+
+                            Intent openMainActivity = new Intent(getContext(), MainActivity.class);
+                            startActivity(openMainActivity);
+                            getActivity().finish();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
                     }
+
+                    @Override
+                    public void onApiCallFailed(JSONObject response) {
+                    }
                 });
             }
         });
+
+        signUpButtonView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getActivity() instanceof SignUpButtonClickListener) {
+                    ((SignUpButtonClickListener) getActivity()).onSignUpButtonClicked();
+                } else {
+                    throw new IllegalStateException("The activity " + getActivity().getClass().getSimpleName() + " (" + SignInFragment.class.getSimpleName() + " parent's) must implement " + SignUpButtonClickListener.class.getSimpleName());
+                }
+            }
+        });
+
+        return view;
     }
 }

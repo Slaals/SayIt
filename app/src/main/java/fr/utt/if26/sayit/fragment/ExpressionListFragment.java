@@ -38,13 +38,15 @@ public class ExpressionListFragment extends Fragment {
         String accessToken = getContext().getSharedPreferences(SharedPreferencesManager.USER_PREFERENCES, Context.MODE_PRIVATE)
                 .getString(SharedPreferencesManager.USER_PREFERENCES_PERMANENT_TOKEN, null);
 
-        ItSaysEndpoints.PublicationEndpoint.publications(accessToken, new ApiHttpClient.ApiCallFinished() {
+        ItSaysEndpoints.PublicationEndpoint.publications(accessToken, getContext(), new ApiHttpClient.ApiCallFinished() {
             @Override
-            public void onApiCallFinished(JSONObject response) {
-                System.out.println(response);
+            public void onApiCallCompleted() {}
+
+            @Override
+            public void onApiCallSucceeded(JSONObject jsonObjectPublications) {
                 ArrayList<ExpressionItem> publicationList = new ArrayList<>();
                 try {
-                    JSONArray publicationArray = response.getJSONArray("publications");
+                    JSONArray publicationArray = jsonObjectPublications.getJSONArray("publications");
                     for (int i = 0; i < publicationArray.length(); i++) {
                         JSONObject currentPublicationNode = publicationArray.getJSONObject(i);
                         publicationList.add(new ExpressionItem(currentPublicationNode.getString("text"), Country.getByIsoCode(currentPublicationNode.getString("langage"))));
@@ -55,6 +57,9 @@ public class ExpressionListFragment extends Fragment {
                     e.printStackTrace();
                 }
             }
+
+            @Override
+            public void onApiCallFailed(JSONObject response) {}
         });
         return view;
     }
