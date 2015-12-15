@@ -98,7 +98,7 @@ public class SignInFragment extends Fragment {
 
                             // Save permanent token and username into shared preferences
                             editor.putString(SharedPreferencesManager.USER_PREFERENCES_PERMANENT_TOKEN, jsonObject.getString("token"));
-                            editor.putString(SharedPreferencesManager.USER_PREFERENCES_USERNAME, jsonObject.getString("id"));
+                            editor.putString(SharedPreferencesManager.USER_PREFERENCES_USERNAME, jsonObject.getString("username"));
 
                             editor.apply();
 

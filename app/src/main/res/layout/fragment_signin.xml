@@ -40,6 +40,7 @@
             android:paddingRight="20dp"
             android:paddingTop="15dp"
             android:singleLine="true"
+            android:textSize="16sp"
             android:typeface="serif" />
 
         <EditText
@@ -59,6 +60,7 @@
             android:paddingRight="20dp"
             android:paddingTop="15dp"
             android:singleLine="true"
+            android:textSize="16sp"
             android:typeface="serif" />
 
         <LinearLayout
@@ -79,8 +81,8 @@
                 android:padding="15dp"
                 android:text="@string/action_sign_in"
                 android:textColor="@color/FontLight"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:textSize="16sp"
+                android:typeface="serif" />
 
             <ProgressBar
                 android:id="@+id/loginProgressBar"
@@ -113,7 +115,7 @@
                 android:paddingTop="15dp"
                 android:text="@string/action_sign_up"
                 android:textColor="@color/darkGrayText"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:typeface="serif" />
 
         </LinearLayout>

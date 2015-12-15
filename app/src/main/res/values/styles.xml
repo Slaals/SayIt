@@ -61,6 +61,7 @@
     <style name="expressionListFragmentListView">
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
+        <item name="android:layout_margin">16dp</item>
         <item name="android:background">@drawable/expression_list_view</item>
     </style>
     <!-- End of styles for expression list fragment -->

@@ -5,24 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ExpressionPublisherFragment">
 
-    <LinearLayout
-        style="@style/expressionListFragmentSearchViewLayout"
+    <ListView
+        android:id="@+id/expressionListListView"
+        style="@style/expressionListFragmentListView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content" />
 
-        <SearchView
-            android:id="@+id/expressionListSearchView"
-            style="@style/expressionListSearchView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:queryHint="@string/expressionSearchViewQueryHint" />
-
-        <ListView
-            style="@style/expressionListFragmentListView"
-            android:id="@+id/expressionListListView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
 </FrameLayout>
