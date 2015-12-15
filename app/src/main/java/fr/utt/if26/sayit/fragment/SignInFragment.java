@@ -21,7 +21,6 @@ import org.json.JSONObject;
 import fr.utt.if26.itsaysclient.ApiHttpClient;
 import fr.utt.if26.itsaysclient.ItSaysEndpoints;
 import fr.utt.if26.sayit.R;
-import fr.utt.if26.sayit.SayItApplication;
 import fr.utt.if26.sayit.activity.MainActivity;
 import fr.utt.if26.sayit.utils.SharedPreferencesManager;
 
@@ -83,7 +82,7 @@ public class SignInFragment extends Fragment {
                 signInButtonLabelView.setText(R.string.action_sign_in_loading);
 
                 // Call the SignIn endpoint of ItSays API
-                ItSaysEndpoints.UserEndpoint.signin(username, password, getContext(), new ApiHttpClient.ApiCallFinished() {
+                ItSaysEndpoints.UserEndpoints.signin(username, password, getContext(), new ApiHttpClient.ApiCallFinished() {
                     @Override
                     public void onApiCallCompleted() {
                         progressBarView.setVisibility(View.GONE);

@@ -19,7 +19,6 @@ import org.json.JSONObject;
 import fr.utt.if26.itsaysclient.ApiHttpClient;
 import fr.utt.if26.itsaysclient.ItSaysEndpoints;
 import fr.utt.if26.sayit.R;
-import fr.utt.if26.sayit.SayItApplication;
 import fr.utt.if26.sayit.activity.MainActivity;
 import fr.utt.if26.sayit.utils.SharedPreferencesManager;
 
@@ -66,7 +65,7 @@ public class SignUpFragment extends Fragment {
                 }
 
                 // Call the SignIn endpoint of ItSays API
-                ItSaysEndpoints.UserEndpoint.signup(username, password1, getContext(), new ApiHttpClient.ApiCallFinished() {
+                ItSaysEndpoints.UserEndpoints.signup(username, password1, getContext(), new ApiHttpClient.ApiCallFinished() {
                     @Override
                     public void onApiCallCompleted() {
                         progressBarView.setVisibility(View.VISIBLE);
@@ -81,7 +80,7 @@ public class SignUpFragment extends Fragment {
                         the /signin endpoint and let the user be authentified with the credentials he put
                         into the sign up fields
                         */
-                        ItSaysEndpoints.UserEndpoint.signin(username, password1, getContext(), new ApiHttpClient.ApiCallFinished() {
+                        ItSaysEndpoints.UserEndpoints.signin(username, password1, getContext(), new ApiHttpClient.ApiCallFinished() {
                             @Override
                             public void onApiCallCompleted() {
                                 progressBarView.setVisibility(View.GONE);

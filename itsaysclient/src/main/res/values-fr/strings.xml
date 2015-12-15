@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="itsays_error_logoutFailed">Echec de déconnexion</string>
+    <string name="itsays_error_invalidAccessToken">Jeton d\'accès invalide</string>
+    <string name="itsays_error_invalidPassword">Mot de passe invalide</string>
+    <string name="itsays_error_invalidUsername">Identifiant invalide</string>
+    <string name="itsays_error_publishFailed">Echec de publication</string>
+    <string name="itsays_error_userAuthentificationFailed">Authentification échouée</string>
+    <string name="itsays_error_userNotFound">Utilisateur introuvable</string>
+    <string name="itsays_error_userSignUpFailed">Inscription échouée</string>
+    <string name="sayit_error_apiIoError">Erreur IO à l\'appel de l\'API :</string>
+</resources>

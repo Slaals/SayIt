@@ -10,7 +10,7 @@ public class ItSaysEndpoints extends ApiHttpClient {
     can automatically call onApiCallSucceeded() when the HTTP request is finished.
     */
 
-    public static class UserEndpoint {
+    public static class UserEndpoints {
 
         public static void signup(String username, String password, Context context, ApiCallFinished callback) {
             ApiHttpClient client = new ApiHttpClient();
@@ -32,7 +32,7 @@ public class ItSaysEndpoints extends ApiHttpClient {
         }
     }
 
-    public static class PublicationEndpoint {
+    public static class PublicationEndpoints {
 
         public static void publications(String accessToken, Context context, ApiCallFinished callback) {
             ApiHttpClient client = new ApiHttpClient();

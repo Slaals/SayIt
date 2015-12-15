@@ -1,3 +1,14 @@
 <resources>
-    <string name="apiIOError">IO error while API call : </string>
+    <!-- Strings concerning internal library errors -->
+    <string name="sayit_error_apiIoError">IO error while API call :</string>
+
+    <!-- Strings concerning ItSays API errors -->
+    <string name="itsays_error_invalidAccessToken">Invalid access token</string>
+    <string name="itsays_error_userNotFound">User not found</string>
+    <string name="itsays_error_publishFailed">Publish failed</string>
+    <string name="itsays_error_logoutFailed">Logout failed</string>
+    <string name="itsays_error_userAuthentificationFailed">Authentification failed</string>
+    <string name="itsays_error_userSignUpFailed">Sign up failed</string>
+    <string name="itsays_error_invalidPassword">Invalid password</string>
+    <string name="itsays_error_invalidUsername">Invalid username</string>
 </resources>

@@ -33,4 +33,5 @@
     <string name="langage_sp">Espagnol</string>
     <string name="langage_fr">Français</string>
     <string name="langage_de">Allemand</string>
+    <string name="publicationsPublishedSuccessfully">La publication a été publiée avec succès !</string>
 </resources>

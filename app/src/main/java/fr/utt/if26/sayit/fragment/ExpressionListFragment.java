@@ -38,9 +38,10 @@ public class ExpressionListFragment extends Fragment {
         String accessToken = getContext().getSharedPreferences(SharedPreferencesManager.USER_PREFERENCES, Context.MODE_PRIVATE)
                 .getString(SharedPreferencesManager.USER_PREFERENCES_PERMANENT_TOKEN, null);
 
-        ItSaysEndpoints.PublicationEndpoint.publications(accessToken, getContext(), new ApiHttpClient.ApiCallFinished() {
+        ItSaysEndpoints.PublicationEndpoints.publications(accessToken, getContext(), new ApiHttpClient.ApiCallFinished() {
             @Override
-            public void onApiCallCompleted() {}
+            public void onApiCallCompleted() {
+            }
 
             @Override
             public void onApiCallSucceeded(JSONObject jsonObjectPublications) {
@@ -59,7 +60,8 @@ public class ExpressionListFragment extends Fragment {
             }
 
             @Override
-            public void onApiCallFailed(JSONObject response) {}
+            public void onApiCallFailed(JSONObject response) {
+            }
         });
         return view;
     }

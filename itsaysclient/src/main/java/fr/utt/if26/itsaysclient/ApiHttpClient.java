@@ -60,7 +60,9 @@ public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
     */
     public interface ApiCallFinished {
         void onApiCallCompleted();
+
         void onApiCallSucceeded(JSONObject response);
+
         void onApiCallFailed(JSONObject response);
     }
 
@@ -184,13 +186,21 @@ public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
         callback.onApiCallCompleted();
         try {
             if (response.has("http_error")) {
-                Toast toast = Toast.makeText(context, "IO error while calling API : " + response.getString("http_error"), Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(context, context.getResources().getString(R.string.sayit_error_apiIoError) + " : " + response.getString("http_error"), Toast.LENGTH_LONG);
                 toast.show();
             } else if (response.has("success")) {
                 if (response.getBoolean("success")) {
                     callback.onApiCallSucceeded(response);
                 } else {
-                    Toast toast = Toast.makeText(context, response.getString("message"), Toast.LENGTH_LONG);
+                    String errorMessage;
+                    System.out.println(response.getString("errorCode"));
+                    if (context.getResources().getIdentifier(response.getString("errorCode"), "string", context.getPackageName()) != 0) {
+                        errorMessage = context.getResources().getString(context.getResources().getIdentifier(response.getString("errorCode"), "string", context.getPackageName()));
+                    } else {
+                        errorMessage = "unkown";
+                        context.getResources().getIdentifier(response.getString("errorCode"), "string", "ft.utt.if26.itsaysclient");
+                    }
+                    Toast toast = Toast.makeText(context, errorMessage, Toast.LENGTH_LONG);
                     toast.show();
                     callback.onApiCallFailed(response);
                 }
