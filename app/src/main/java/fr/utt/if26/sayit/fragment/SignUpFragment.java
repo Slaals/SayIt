@@ -102,7 +102,7 @@ public class SignUpFragment extends Fragment {
                                     editor.apply();
 
                                     // Show a prompt indicating the user has successfully signed up and signed in
-                                    Toast toast = Toast.makeText(SignUpFragment.this.getContext(), R.string.signUpSucceeded, Toast.LENGTH_LONG);
+                                    Toast toast = Toast.makeText(getContext(), R.string.signUpSucceeded, Toast.LENGTH_LONG);
                                     toast.show();
 
                                     Intent openMainActivity = new Intent(getContext(), MainActivity.class);

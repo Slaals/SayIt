@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="OrangeSayIt">#FF9900</color>
+    <color name="OrangeSayItInactive">#66FF9900</color>
     <color name="FontLight">#FFF</color>
     <color name="BackgroundLight">#DDD</color>
     <color name="BackgroundUltraLight">#FFF</color>

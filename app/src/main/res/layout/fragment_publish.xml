@@ -20,13 +20,14 @@
         android:gravity="center_vertical"
         android:minHeight="32dp">
 
-        <EditText
-            android:id="@+id/langageField"
+        <Spinner
+            android:id="@+id/langageSpinner"
             style="@style/langageField"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@+id/publishButton"
+            android:padding="5dp"
             android:gravity="left"
             android:hint="@string/langagePlaceholder" />
 
@@ -36,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
             android:text="@string/publishButtonLabel" />
     </RelativeLayout>
 </LinearLayout>

@@ -13,6 +13,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -101,6 +102,10 @@ public class SignInFragment extends Fragment {
                             editor.putString(SharedPreferencesManager.USER_PREFERENCES_USERNAME, jsonObject.getString("id"));
 
                             editor.apply();
+
+                            // Show a prompt indicating the user has successfully signed up and signed in
+                            Toast toast = Toast.makeText(getContext(), R.string.signInSucceeded, Toast.LENGTH_LONG);
+                            toast.show();
 
                             Intent openMainActivity = new Intent(getContext(), MainActivity.class);
                             startActivity(openMainActivity);

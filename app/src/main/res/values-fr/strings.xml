@@ -28,4 +28,9 @@
     <string name="signUpFailedPasswordDoesntMatch">Les mot de passes ne correspondent pas…</string>
     <string name="signUpSucceeded">Inscription réussie !</string>
     <string name="signUpFailedUnknownError">Inscription échouée… Erreur inconnue</string>
+    <string name="signInSucceeded">Connexion réussie !</string>
+    <string name="langage_us">Anglais</string>
+    <string name="langage_sp">Espagnol</string>
+    <string name="langage_fr">Français</string>
+    <string name="langage_de">Allemand</string>
 </resources>

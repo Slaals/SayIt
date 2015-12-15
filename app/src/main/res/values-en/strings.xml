@@ -28,4 +28,9 @@
     <string name="signUpFailedPasswordDoesntMatch">Passwords doesn\'t match…</string>
     <string name="signUpSucceeded">Sign up succeeded !</string>
     <string name="signUpFailedUnknownError">Sign up failed… Unknown error</string>
+    <string name="signInSucceeded">Sign in succeeded !</string>
+    <string name="langage_de">German</string>
+    <string name="langage_fr">French</string>
+    <string name="langage_sp">Spanish</string>
+    <string name="langage_us">English</string>
 </resources>
