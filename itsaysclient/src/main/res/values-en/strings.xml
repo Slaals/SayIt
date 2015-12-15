@@ -8,5 +8,6 @@
     <string name="itsays_error_userAuthentificationFailed">Authentification failed</string>
     <string name="itsays_error_userNotFound">User not found</string>
     <string name="itsays_error_userSignUpFailed">Sign up failed</string>
-    <string name="sayit_error_apiIoError">IO error while API call :</string>
+    <string name="apiCommunicationError">IO error while API call :</string>
+    <string name="unknownItSaysApiErrorCode">Unknown API error code :</string>
 </resources>

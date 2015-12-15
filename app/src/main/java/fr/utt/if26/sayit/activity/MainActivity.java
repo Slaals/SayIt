@@ -19,6 +19,10 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
+import fr.utt.if26.itsaysclient.ApiHttpClient;
+import fr.utt.if26.itsaysclient.ItSaysEndpoints;
 import fr.utt.if26.sayit.R;
 import fr.utt.if26.sayit.fragment.ExpressionListFragment;
 import fr.utt.if26.sayit.fragment.PublishFragment;
@@ -124,20 +128,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        switch (id) {
-            case R.id.action_menu_1:
-                break;
-            case R.id.action_menu_2:
-                break;
-            case R.id.action_menu_3:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -155,15 +145,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 navigateToExpressionListScreen();
                 break;
             case R.id.drawerMenuNavigationLogout:
-                clearLoginCredentials();
-                Intent openLoginActivity = new Intent(this, LoginActivity.class);
-                startActivity(openLoginActivity);
-                /*
-                finish() is crucial for kill MainActivity when LoginActivity opens
-                Actually, kill MainActivity prevent the user to use the back button being into
-                the the login screen and simply bypass it
-                */
-                finish();
+                SharedPreferences sharedPreferences = getSharedPreferences(SharedPreferencesManager.USER_PREFERENCES, Context.MODE_PRIVATE);
+                String accessToken = sharedPreferences.getString(SharedPreferencesManager.USER_PREFERENCES_PERMANENT_TOKEN, null);
+                ItSaysEndpoints.UserEndpoints.logout(accessToken, getApplicationContext(), new ApiHttpClient.ApiCallFinished() {
+                    @Override
+                    public void onApiCallCompleted() {
+                    }
+
+                    @Override
+                    public void onApiCallSucceeded(JSONObject response) {
+                        clearLoginCredentials();
+                        Intent openLoginActivity = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(openLoginActivity);
+                        /*
+                        finish() is crucial for kill MainActivity when LoginActivity opens
+                        Actually, kill MainActivity prevent the user to use the back button being into
+                        the the login screen and simply bypass it
+                        */
+                        finish();
+                    }
+
+                    @Override
+                    public void onApiCallFailed(JSONObject response) {
+                    }
+                });
                 break;
         }
 

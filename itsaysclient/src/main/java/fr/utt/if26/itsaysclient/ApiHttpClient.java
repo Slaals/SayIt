@@ -164,7 +164,7 @@ public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
             e.printStackTrace();
         }
 
-        // Si an IO error during HTTP request had been catched
+        // Si an IO error during HTTP request had been catch
         if (response == null) {
             try {
                 JSONObject tempResponse = new JSONObject();
@@ -186,7 +186,7 @@ public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
         callback.onApiCallCompleted();
         try {
             if (response.has("http_error")) {
-                Toast toast = Toast.makeText(context, context.getResources().getString(R.string.sayit_error_apiIoError) + " : " + response.getString("http_error"), Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(context, context.getResources().getString(R.string.apiCommunicationError) + " : " + response.getString("http_error"), Toast.LENGTH_LONG);
                 toast.show();
             } else if (response.has("success")) {
                 if (response.getBoolean("success")) {
@@ -197,8 +197,7 @@ public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
                     if (context.getResources().getIdentifier(response.getString("errorCode"), "string", context.getPackageName()) != 0) {
                         errorMessage = context.getResources().getString(context.getResources().getIdentifier(response.getString("errorCode"), "string", context.getPackageName()));
                     } else {
-                        errorMessage = "unkown";
-                        context.getResources().getIdentifier(response.getString("errorCode"), "string", "ft.utt.if26.itsaysclient");
+                        errorMessage = context.getResources().getString(R.string.unknownItSaysApiErrorCode) + response.getString("errorCode");
                     }
                     Toast toast = Toast.makeText(context, errorMessage, Toast.LENGTH_LONG);
                     toast.show();

@@ -17,22 +17,4 @@
                 android:title="@string/drawerMenuNavigationLogout" />
         </menu>
     </item>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/drawer_menu_profil1"
-                android:icon="@android:drawable/ic_menu_gallery"
-                android:title="@string/drawer_menu_profil1" />
-            <item
-                android:id="@+id/drawer_menu_profil2"
-                android:icon="@android:drawable/ic_menu_gallery"
-                android:title="@string/drawer_menu_profil2" />
-            <item
-                android:id="@+id/drawer_menu_profil3"
-                android:icon="@android:drawable/ic_menu_gallery"
-                android:title="@string/drawer_menu_profil3" />
-        </menu>
-    </item>
-
 </menu>

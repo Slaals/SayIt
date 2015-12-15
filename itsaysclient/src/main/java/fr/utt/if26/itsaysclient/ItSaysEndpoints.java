@@ -30,6 +30,14 @@ public class ItSaysEndpoints extends ApiHttpClient {
             client.addQueryParam("password", password);
             client.launchApiCall(context, callback);
         }
+
+        public static void logout(String accessToken, Context context, ApiCallFinished callback) {
+            ApiHttpClient client = new ApiHttpClient();
+            client.setRelativeEndpointPath("/logout");
+            client.setHttpMethod(EnumHttpMethod.DELETE);
+            client.addHeaderParam("x-access-token", accessToken);
+            client.launchApiCall(context, callback);
+        }
     }
 
     public static class PublicationEndpoints {

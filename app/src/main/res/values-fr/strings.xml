@@ -1,25 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="action_settings">Propriétés</string>
     <string name="langagePlaceholder">Langage</string>
     <string name="navigation_drawer_close">Fermer le menu de navigation</string>
     <string name="navigation_drawer_open">Fermer le menu de navigation</string>
     <string name="publishButtonLabel">Publier</string>
-    <string name="drawer_menu_profil1">Profil 1</string>
-    <string name="drawer_menu_profil2">Profil 2</string>
-    <string name="drawer_menu_profil3">Profil 3</string>
     <string name="action_sign_in">Se connecter</string>
     <string name="prompt_password">Mot de passe</string>
     <string name="prompt_username">Identifiant</string>
     <string name="loginActivityTitle">Se connecter</string>
-    <string name="expressionSearchViewQueryHint">Rechercher un mot, une phrase ou un texte</string>
-    <string name="publishActivityTitle">Publier</string>
     <string name="drawMainNavigationLabel">Navigation</string>
     <string name="drawerMenuNavigationPublish">Publier quelque chose</string>
     <string name="drawerMenuNavigationPublications">Liste des publications</string>
     <string name="drawerMenuNavigationLogout">Déconnexion</string>
-    <string name="signInFailedInvalidCredentials">Identifiants invalides</string>
-    <string name="signInFailedUnableToConnect">Connexion impossible à l\'API</string>
     <string name="action_sign_in_loading">Connexion en cours…</string>
     <string name="action_sign_up">Inscription</string>
     <string name="expressionPlaceholder">Entrez votre texte ici</string>
@@ -27,7 +19,6 @@
     <string name="action_sign_up_loading">Inscriptions en cours…</string>
     <string name="signUpFailedPasswordDoesntMatch">Les mot de passes ne correspondent pas…</string>
     <string name="signUpSucceeded">Inscription réussie !</string>
-    <string name="signUpFailedUnknownError">Inscription échouée… Erreur inconnue</string>
     <string name="signInSucceeded">Connexion réussie !</string>
     <string name="langage_us">Anglais</string>
     <string name="langage_sp">Espagnol</string>
