@@ -24,7 +24,7 @@
     <string name="signUpFailedPasswordDoesntMatch">Passwords doesn\'t match…</string>
     <string name="signUpSucceeded">Sign up succeeded !</string>
 
-    <!-- Strings related to publish activity -->
+    <!-- Strings related to publication activity -->
     <string name="publicationsPublishedSuccessfully">Publication successfully published !</string>
 
     <!-- Strings related to expression list activity -->

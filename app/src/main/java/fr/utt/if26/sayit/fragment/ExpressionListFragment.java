@@ -50,7 +50,14 @@ public class ExpressionListFragment extends Fragment {
                     JSONArray publicationArray = jsonObjectPublications.getJSONArray("publications");
                     for (int i = 0; i < publicationArray.length(); i++) {
                         JSONObject currentPublicationNode = publicationArray.getJSONObject(i);
-                        publicationList.add(new ExpressionItem(currentPublicationNode.getString("text"), Country.getByIsoCode(currentPublicationNode.getString("langage"))));
+                        JSONArray audio = currentPublicationNode.getJSONArray("audio");
+                        publicationList.add(
+                                new ExpressionItem(
+                                        currentPublicationNode.getString("text"),
+                                        Country.getByIsoCode(currentPublicationNode.getString("language")),
+                                        audio.length()
+                                )
+                        );
                     }
                     ListView listView = (ListView) view.findViewById(R.id.expressionListListView);
                     listView.setAdapter(new ExpressionListAdapter(getActivity(), R.layout.item_expression_list, publicationList));

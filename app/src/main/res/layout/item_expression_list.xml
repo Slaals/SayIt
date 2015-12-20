@@ -1,22 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/expressionListImageViewItem"
         style="@style/expressionListImageViewItem"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="10"
         android:layout_gravity="center_vertical" />
 
     <TextView
         android:id="@+id/expressionListTextViewItem"
         style="@style/expressionListTextViewItem"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:maxLines="3"
+        android:layout_weight="70"
         android:layout_gravity="center_vertical" />
+
+    <TextView
+        android:id="@+id/expressionListNumberItem"
+        style="@style/expressionListNumberItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="10"
+        android:layout_gravity="center_vertical"
+        android:gravity="right"/>
+
+    <ImageView
+        android:id="@+id/expressionListMicroViewItem"
+        style="@style/expressionListImageViewItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="10"
+        android:src="@drawable/microphone" />
 
 </LinearLayout>

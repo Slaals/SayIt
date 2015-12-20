@@ -54,7 +54,7 @@ public class PublishFragment extends Fragment {
                 String token = sharedPreferences.getString(SharedPreferencesManager.USER_PREFERENCES_PERMANENT_TOKEN, null);
 
                 // Call the SignIn endpoint of ItSays API
-                ItSaysEndpoints.PublicationEndpoints.publish(token, expressionFieldView.getText().toString(), ((Country) langageSpinnerView.getSelectedItem()).getIsoCode(), getContext(), new ApiHttpClient.ApiCallFinished() {
+                ItSaysEndpoints.PublicationEndpoints.publication(token, expressionFieldView.getText().toString(), ((Country) langageSpinnerView.getSelectedItem()).getIsoCode(), getContext(), new ApiHttpClient.ApiCallFinished() {
                     @Override
                     public void onApiCallSucceeded(JSONObject response) {
                         // Show a prompt indicating the publish has succeeded

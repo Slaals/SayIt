@@ -28,7 +28,7 @@ The three AsyncTask generics are respectively matching to :
 public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
 
     // TODO : change the production API root link (It currently point to a network dependant development machine)
-    private static final String API_ROOT_LINK = "http://192.168.1.40:8080/api";
+    private static final String API_ROOT_LINK = "http://192.168.1.85:8080/api";
 
     private static final int CONNECTION_TIMEOUT = 5000;
 

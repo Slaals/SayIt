@@ -15,7 +15,7 @@
 
     <!-- ******************* -->
 
-    <!-- Start of styles for publish fragment -->
+    <!-- Start of styles for publication fragment -->
     <style name="expressionPublishFragmentParentLayout">
         <item name="android:padding">16dp</item>
     </style>
@@ -41,7 +41,7 @@
         <item name="android:typeface">serif</item>
         <item name="android:layout_marginLeft">25dp</item>
     </style>
-    <!-- End of styles for publish fragment -->
+    <!-- End of styles for publication fragment -->
 
     <!-- ******************* -->
 
@@ -76,11 +76,15 @@
     <style name="expressionListTextViewItem">
         <item name="android:padding">10dp</item>
         <item name="android:textSize">16sp</item>
-
     </style>
 
     <style name="expressionListImageViewItem">
         <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="expressionListNumberItem">
+        <item name="android:textSize">23sp</item>
+        <item name="android:textColor">@color/OrangeSayIt</item>
     </style>
 
     <style name="FullscreenTheme" parent="android:Theme.NoTitleBar">
