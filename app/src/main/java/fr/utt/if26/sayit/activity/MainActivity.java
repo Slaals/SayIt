@@ -25,10 +25,11 @@ import fr.utt.if26.itsaysclient.ApiHttpClient;
 import fr.utt.if26.itsaysclient.ItSaysEndpoints;
 import fr.utt.if26.sayit.R;
 import fr.utt.if26.sayit.fragment.ExpressionListFragment;
+import fr.utt.if26.sayit.fragment.PublicationFragment;
 import fr.utt.if26.sayit.fragment.PublishFragment;
 import fr.utt.if26.sayit.utils.SharedPreferencesManager;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ExpressionListFragment.ExpressionItemListener {
 
     TextView drawerUsernameView;
     Toolbar toolbar;
@@ -96,6 +97,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.apply();
     }
 
+    private void navigateToPublicationScreen(String id) {
+        Bundle bundle = new Bundle();
+        bundle.putString("id", id);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        PublicationFragment publicationFragment = new PublicationFragment();
+        publicationFragment.setArguments(bundle);
+
+        fragmentTransaction.replace(R.id.mainContentLayout, publicationFragment);
+        fragmentTransaction.commit();
+    }
+
     private void navigateToPublishScreen() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -111,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.replace(R.id.mainContentLayout, expressionListFragment);
         fragmentTransaction.commit();
     }
+
 
     @Override
     public void onBackPressed() {
@@ -175,5 +191,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onItemClickListener(String id) {
+        navigateToPublicationScreen(id);
     }
 }

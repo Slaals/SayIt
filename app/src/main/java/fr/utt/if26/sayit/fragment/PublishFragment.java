@@ -20,7 +20,7 @@ import java.util.Collections;
 import fr.utt.if26.itsaysclient.ApiHttpClient;
 import fr.utt.if26.itsaysclient.ItSaysEndpoints;
 import fr.utt.if26.sayit.R;
-import fr.utt.if26.sayit.adapter.LangageSpinnerAdapter;
+import fr.utt.if26.sayit.adapter.languageSpinnerAdapter;
 import fr.utt.if26.sayit.bean.Country;
 import fr.utt.if26.sayit.utils.SharedPreferencesManager;
 
@@ -76,7 +76,7 @@ public class PublishFragment extends Fragment {
 
         ArrayList<Country> countryList = new ArrayList<>();
         Collections.addAll(countryList, Country.values());
-        langageSpinnerView.setAdapter(new LangageSpinnerAdapter(getContext(), R.layout.spinner_langage_item, countryList));
+        langageSpinnerView.setAdapter(new languageSpinnerAdapter(getContext(), R.layout.spinner_langage_item, countryList));
 
         return view;
     }

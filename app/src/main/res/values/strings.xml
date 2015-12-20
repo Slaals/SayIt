@@ -33,6 +33,10 @@
     <string name="drawerMenuNavigationPublications">List of publications</string>
     <string name="expressionPlaceholder">Enter your text here</string>
 
+    <!-- Strings related to publication fragment -->
+    <string name="commentPublication">Comment</string>
+    <string name="audioPublication">Audio</string>
+
     <!-- -->
     <string name="langage_fr">French</string>
     <string name="langage_sp">Spanish</string>

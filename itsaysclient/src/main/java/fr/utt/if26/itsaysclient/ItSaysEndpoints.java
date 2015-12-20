@@ -50,14 +50,22 @@ public class ItSaysEndpoints extends ApiHttpClient {
             client.launchApiCall(context, callback);
         }
 
-        public static void publication(String accessToken, String text, String langage, Context context, ApiCallFinished callback) {
+        public static void publication(String accessToken, String text, String language, Context context, ApiCallFinished callback) {
             ApiHttpClient client = new ApiHttpClient();
             client.setRelativeEndpointPath("/publication");
             client.setHttpMethod(EnumHttpMethod.POST);
             client.addHeaderParam("x-access-token", accessToken);
             client.setBodyParamType(EnumBodyParamType.X_WWW_FORM_URLENCODED);
             client.addBodyParam("text", text);
-            client.addBodyParam("language", langage);
+            client.addBodyParam("language", language);
+            client.launchApiCall(context, callback);
+        }
+
+        public static void publication(String accessToken, String id, Context context, ApiCallFinished callback) {
+            ApiHttpClient client = new ApiHttpClient();
+            client.setRelativeEndpointPath("/publication/" + id);
+            client.setHttpMethod(EnumHttpMethod.GET);
+            client.addHeaderParam("x-access-token", accessToken);
             client.launchApiCall(context, callback);
         }
     }
