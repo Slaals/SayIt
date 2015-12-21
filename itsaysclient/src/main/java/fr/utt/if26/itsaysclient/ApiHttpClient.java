@@ -9,13 +9,20 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -38,7 +45,11 @@ public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
     private HashMap<String, String> bodyParams;
     private HashMap<String, String> queryParams;
     private HashMap<String, String> headerParams;
+    private HashMap<String, File> filesParams;
     private String relativeEndpointPath;
+
+    private final String boundary;
+    private final String LINE_FEED = "\r\n";
 
     private Context context;
 
@@ -46,6 +57,11 @@ public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
         bodyParams = new HashMap<>();
         queryParams = new HashMap<>();
         headerParams = new HashMap<>();
+        filesParams = new HashMap<>();
+
+        boundary = "****" + System.currentTimeMillis();
+
+        bodyParamType = EnumBodyParamType.DEFAULT;
     }
 
     public void setBodyParamType(EnumBodyParamType bodyParamType) {
@@ -120,27 +136,74 @@ public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
             urlConnection.connect();
 
             /* Initialize output stream for write the HTTP request body */
-            if (!bodyParams.isEmpty()) {
-                OutputStream outStream = urlConnection.getOutputStream();
-                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outStream));
-                switch (bodyParamType) {
-                    case X_WWW_FORM_URLENCODED:
-                        int j = 0;
-                        for (Map.Entry<String, String> bodyParam : bodyParams.entrySet()) {
-                            StringBuilder stringToWrite = new StringBuilder();
-                            stringToWrite.append(bodyParam.getKey());
-                            stringToWrite.append("=");
-                            stringToWrite.append(bodyParam.getValue());
-                            if (j < bodyParams.size()) {
-                                stringToWrite.append("&");
-                            }
-                            bufferedWriter.write(stringToWrite.toString());
-                            j++;
+            switch (bodyParamType) {
+                case X_WWW_FORM_URLENCODED:
+                    OutputStream outStream = urlConnection.getOutputStream();
+                    BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outStream));
+                    int j = 0;
+                    for (Map.Entry<String, String> bodyParam : bodyParams.entrySet()) {
+                        StringBuilder stringToWrite = new StringBuilder();
+                        stringToWrite.append(bodyParam.getKey());
+                        stringToWrite.append("=");
+                        stringToWrite.append(bodyParam.getValue());
+                        if (j < bodyParams.size()) {
+                            stringToWrite.append("&");
                         }
-                        break;
-                }
-                bufferedWriter.close();
-                outStream.close();
+                        bufferedWriter.write(stringToWrite.toString());
+                        j++;
+                    }
+
+                    bufferedWriter.close();
+                    outStream.close();
+
+                    break;
+                case FORM_DATA:
+                    outStream = urlConnection.getOutputStream();
+                    PrintWriter writer = new PrintWriter(outStream);
+
+                    File audioFile = filesParams.get("audio");
+
+                    writer.append("--")
+                            .append(boundary)
+                            .append(LINE_FEED);
+
+                    writer.append("Content-Disposition: form-data; name=\"audio\"; filename=\"")
+                            .append(audioFile.getName())
+                            .append("\"")
+                            .append(LINE_FEED);
+
+                    writer.append("Content-Type: ")
+                            .append(URLConnection.guessContentTypeFromName(audioFile.getName()))
+                            .append(LINE_FEED);
+
+                    writer.append("Content-Transfer-Encoding: binary")
+                            .append(LINE_FEED);
+
+                    writer.append(LINE_FEED);
+                    writer.flush();
+
+                    FileInputStream inputStream = new FileInputStream(audioFile);
+                    byte[] buffer = new byte[4096];
+                    int bytesRead = -1;
+                    while ((bytesRead = inputStream.read(buffer)) != -1) {
+                        outStream.write(buffer, 0, bytesRead);
+                    }
+                    outStream.flush();
+                    inputStream.close();
+
+                    writer.append(LINE_FEED);
+
+                    writer.append(LINE_FEED).flush();
+                    writer.append("--")
+                            .append(boundary)
+                            .append("--")
+                            .append(LINE_FEED);
+
+                    writer.close();
+
+                    break;
+                case DEFAULT:
+                    break;
             }
 
             /* Initialize input stream for read the HTTP response body */
@@ -224,12 +287,18 @@ public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
         bodyParams.put(key, value);
     }
 
+    public void addFilePart(String key, File value) throws IOException { filesParams.put(key, value); }
+
     public void setHttpMethod(EnumHttpMethod httpMethod) {
         this.httpMethod = httpMethod;
     }
 
     public void setRelativeEndpointPath(String relativeEndpointPath) {
         this.relativeEndpointPath = relativeEndpointPath;
+    }
+
+    public String getBoundary() {
+        return boundary;
     }
     /* ------------------- */
 }

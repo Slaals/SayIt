@@ -2,6 +2,9 @@ package fr.utt.if26.itsaysclient;
 
 import android.content.Context;
 
+import java.io.File;
+import java.io.IOException;
+
 public class ItSaysEndpoints extends ApiHttpClient {
 
     /*
@@ -66,6 +69,21 @@ public class ItSaysEndpoints extends ApiHttpClient {
             client.setRelativeEndpointPath("/publication/" + id);
             client.setHttpMethod(EnumHttpMethod.GET);
             client.addHeaderParam("x-access-token", accessToken);
+            client.launchApiCall(context, callback);
+        }
+    }
+
+    public static class AudioEndpoints {
+
+        public static void audio(String accessToken, String id, File file, Context context, ApiCallFinished callback) throws IOException {
+            ApiHttpClient client = new ApiHttpClient();
+            client.setRelativeEndpointPath("/publication/" + id + "/audio");
+            client.setHttpMethod(EnumHttpMethod.POST);
+            client.addHeaderParam("x-access-token", accessToken);
+            client.addHeaderParam("Cache-Control", "no-cache");
+            client.addHeaderParam("Content-Type", "multipart/form-data;boundary=" + client.getBoundary());
+            client.setBodyParamType(EnumBodyParamType.FORM_DATA);
+            client.addFilePart("audio", file);
             client.launchApiCall(context, callback);
         }
     }

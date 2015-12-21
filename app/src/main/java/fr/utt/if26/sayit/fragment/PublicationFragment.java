@@ -3,7 +3,6 @@ package fr.utt.if26.sayit.fragment;
 import android.content.Context;
 import android.media.MediaRecorder;
 import android.os.Environment;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -15,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,6 +34,7 @@ public class PublicationFragment extends Fragment {
 
     private MediaRecorder recorder = null;
     private File audioFile = null;
+    private String publicationId;
 
     private MediaRecorder.OnErrorListener errorListener = new MediaRecorder.OnErrorListener() {
         @Override
@@ -56,11 +55,12 @@ public class PublicationFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         Bundle bundle = this.getArguments();
+        publicationId = bundle.getString("id");
 
         String accessToken = getContext().getSharedPreferences(SharedPreferencesManager.USER_PREFERENCES, Context.MODE_PRIVATE)
                 .getString(SharedPreferencesManager.USER_PREFERENCES_PERMANENT_TOKEN, null);
 
-        ItSaysEndpoints.PublicationEndpoints.publication(accessToken, bundle.getString("id"), getContext(), new ApiHttpClient.ApiCallFinished() {
+        ItSaysEndpoints.PublicationEndpoints.publication(accessToken, publicationId, getContext(), new ApiHttpClient.ApiCallFinished() {
             @Override
             public void onApiCallSucceeded(JSONObject response) {
                 TextView publication = (TextView) getView().findViewById(R.id.publicationTextViewPublication);
@@ -70,12 +70,11 @@ public class PublicationFragment extends Fragment {
                     Country country = Country.getByIsoCode(publicationObj.getString("language"));
 
                     publication.setText(publicationObj.getString("text"));
+                    assert country != null;
                     language.setImageDrawable(ContextCompat.getDrawable(getContext(), country.getDrawableResource()));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
             }
 
             @Override
@@ -96,17 +95,17 @@ public class PublicationFragment extends Fragment {
 
         recordBtn.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
+            public boolean onTouch(View view1, MotionEvent motionEvent) {
                 switch (motionEvent.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         try {
-                            startRecording();
+                            PublicationFragment.this.startRecording();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                         break;
                     case MotionEvent.ACTION_UP:
-                        stopRecording();
+                        PublicationFragment.this.stopRecording();
                         break;
                 }
 
@@ -143,14 +142,41 @@ public class PublicationFragment extends Fragment {
             recorder.reset();
             recorder.release();
 
-            sendRecordToAPI();
+            try {
+                sendRecordToAPI();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             recorder = null;
         }
     }
 
-    private void sendRecordToAPI() {
-        audioFile.getAbsoluteFile();
-        Toast.makeText(getContext(), audioFile.getAbsolutePath(), Toast.LENGTH_LONG).show();
+    private void sendRecordToAPI() throws IOException {
+        if(audioFile.exists()) {
+            String accessToken = getContext().getSharedPreferences(SharedPreferencesManager.USER_PREFERENCES, Context.MODE_PRIVATE)
+                    .getString(SharedPreferencesManager.USER_PREFERENCES_PERMANENT_TOKEN, null);
+
+            ItSaysEndpoints.AudioEndpoints.audio(accessToken, publicationId, audioFile, getContext(), new ApiHttpClient.ApiCallFinished() {
+                @Override
+                public void onApiCallCompleted() {
+
+                }
+
+                @Override
+                public void onApiCallSucceeded(JSONObject jsonObjectSignUp) {
+                    // TODO
+                }
+
+                @Override
+                public void onApiCallFailed(JSONObject response) {
+                    // TODO
+                }
+            });
+
+            audioFile.deleteOnExit();
+        } else {
+            //TODO
+        }
     }
 }
