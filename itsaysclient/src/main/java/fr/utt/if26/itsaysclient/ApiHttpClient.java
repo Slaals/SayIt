@@ -1,7 +1,9 @@
 package fr.utt.if26.itsaysclient;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Environment;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -9,11 +11,11 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
+
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -97,6 +99,7 @@ public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
         super.onPreExecute();
     }
 
+    @TargetApi(23)
     @Override
     protected JSONObject doInBackground(Void... params) {
         StringBuilder urlString = new StringBuilder();
@@ -206,21 +209,46 @@ public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
                     break;
             }
 
-            /* Initialize input stream for read the HTTP response body */
-            InputStream inStream = urlConnection.getInputStream();
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inStream));
-            String bufferedResponse, responseString = "";
-            while ((bufferedResponse = bufferedReader.readLine()) != null) {
-                responseString += bufferedResponse;
-            }
-            response = new JSONObject(responseString);
-            bufferedReader.close();
-            inStream.close();
 
-            // DEBUG
+            // Not the best way, but have to go ahead
+            if(urlConnection.getContentType().compareTo("application/ogg") == 0) {
+
+                File sampleDir = Environment.getExternalStorageDirectory();
+
+                File file = File.createTempFile("mbi", ".ogg", sampleDir);
+
+                // write the inputStream to a FileOutputStream
+                OutputStream outputStream =
+                        new FileOutputStream(file);
+
+                int read = 0;
+                byte[] bytes = new byte[1024];
+
+                while ((read = urlConnection.getInputStream().read(bytes)) != -1) {
+                    outputStream.write(bytes, 0, read);
+                }
+
+                response = new JSONObject();
+                response.put("success", true);
+                response.put("file", file.getAbsolutePath());
+            } else {
+                /* Initialize input stream for read the HTTP response body */
+                InputStream inStream = urlConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inStream));
+                String bufferedResponse, responseString = "";
+                while ((bufferedResponse = bufferedReader.readLine()) != null) {
+                    responseString += bufferedResponse;
+                }
+                response = new JSONObject(responseString);
+                bufferedReader.close();
+                inStream.close();
+            }
+
             System.out.println("Call to ItSays API : " + urlString.toString() + " - HTTP/" + urlConnection.getResponseCode() + " (" + urlConnection.getResponseMessage() + ")");
 
             urlConnection.disconnect();
+
+
         } catch (IOException e) {
             error = e.getLocalizedMessage();
         } catch (JSONException e) {

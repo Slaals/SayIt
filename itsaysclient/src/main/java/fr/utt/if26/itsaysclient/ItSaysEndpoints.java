@@ -86,5 +86,13 @@ public class ItSaysEndpoints extends ApiHttpClient {
             client.addFilePart("audio", file);
             client.launchApiCall(context, callback);
         }
+
+        public static void audio(String accessToken, String id, Context context, ApiCallFinished callback) {
+            ApiHttpClient client = new ApiHttpClient();
+            client.setRelativeEndpointPath("/audio/" + id);
+            client.setHttpMethod(EnumHttpMethod.GET);
+            client.addHeaderParam("x-access-token", accessToken);
+            client.launchApiCall(context, callback);
+        }
     }
 }
