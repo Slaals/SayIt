@@ -25,4 +25,10 @@
     <string name="langage_fr">Français</string>
     <string name="langage_de">Allemand</string>
     <string name="publicationsPublishedSuccessfully">La publication a été publiée avec succès !</string>
+    <string name="audioPublication">Audio</string>
+    <string name="commentPublication">Commentaire</string>
+    <string name="created">Créé par</string>
+    <string name="itsays_recorded">Félicitations ! Désormais, votre voix apprendra au monde entier comment prononcer cela !</string>
+    <string name="itsays_start_recording">ItSays enregistre votre voix ! Restez appuyé, et lisez cette publication avec votre plus belle voix !</string>
+    <string name="date_at">à</string>
 </resources>
