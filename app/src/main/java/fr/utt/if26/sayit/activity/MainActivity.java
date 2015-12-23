@@ -29,7 +29,7 @@ import fr.utt.if26.sayit.fragment.PublicationFragment;
 import fr.utt.if26.sayit.fragment.PublishFragment;
 import fr.utt.if26.sayit.utils.SharedPreferencesManager;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ExpressionListFragment.ExpressionItemListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, ExpressionListFragment.ExpressionItemListener, PublishFragment.PublishButtonOnClickListener {
 
     TextView drawerUsernameView;
     Toolbar toolbar;
@@ -196,5 +196,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onItemClickListener(String id) {
         navigateToPublicationScreen(id);
+    }
+
+    @Override
+    public void onPublishButtonClick() {
+        navigateToExpressionListScreen();
     }
 }

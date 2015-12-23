@@ -14,6 +14,7 @@ public class RecordAudio {
 
     private MediaRecorder recorder = null;
     private File audioFile = null;
+    private boolean isRecording = false;
 
     private MediaRecorder.OnErrorListener errorListener = new MediaRecorder.OnErrorListener() {
         @Override
@@ -47,6 +48,8 @@ public class RecordAudio {
         recorder.setOutputFile(audioFile.getAbsolutePath());
         recorder.prepare();
         recorder.start();
+
+        isRecording = true;
     }
 
     public void stopRecording() throws RuntimeException {
@@ -55,10 +58,16 @@ public class RecordAudio {
             recorder.reset();
             recorder.release();
             recorder = null;
+
+            isRecording = false;
         }
     }
 
     public File getAudioFile() {
         return audioFile;
+    }
+
+    public boolean isRecording() {
+        return isRecording;
     }
 }

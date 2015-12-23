@@ -1,81 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    style="@style/PublicationFragment">
 
     <LinearLayout
         android:id="@+id/publicationLayout"
+        android:layout_marginBottom="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/languageImageViewPublication"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="10" />
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_weight="10"
+            android:layout_marginTop="15dp"/>
 
         <TextView
             android:id="@+id/publicationTextViewPublication"
-            android:layout_toRightOf="@id/languageImageViewPublication"
+            style="@style/PublicationView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:minHeight="100dp"
             android:layout_gravity="center_vertical"
-            android:layout_weight="70" />
+            android:layout_weight="70"/>
 
-        <Button
-            android:id="@+id/recordButtonPublication"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="PLACEHOLDER"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="20"
-            android:layout_toRightOf="@id/publicationTextViewPublication"/>
-
-        <TextView
-            android:id="@+id/recordChronoPublication"
+        <LinearLayout
+            style="@style/RecordLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/recordButtonPublication"
-            android:text="30" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/recordChronoPublication"
+                style="@style/ChronoView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+
+            <ImageButton
+                android:id="@+id/recordButtonPublication"
+                style="@style/RecordButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center_vertical"/>
+
+        </LinearLayout>
 
     </LinearLayout>
-
-    <EditText
-        android:id="@+id/commentTextViewPublication"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/publicationLayout" />
-
-    <Button
-        android:id="@+id/commentButtonPublication"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/commentPublication"
-        android:layout_below="@+id/commentTextViewPublication"
-        android:layout_alignParentRight="true" />
 
     <View
         android:id="@+id/horizontalSeparatorPublication"
         android:layout_width="fill_parent"
         android:layout_height="2dp"
         android:background="@color/OrangeSayItInactive"
-        android:layout_below="@+id/commentButtonPublication"/>
-
-    <TextView
-        android:id="@+id/audioTabPublication"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/audioPublication"
-        android:layout_below="@+id/horizontalSeparatorPublication"
-        android:layout_centerHorizontal="true"/>
+        android:layout_below="@+id/publicationLayout"/>
 
     <include
         layout="@layout/audio_list"
         android:id="@+id/audioListPublication"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/audioTabPublication" />
+        android:layout_below="@+id/horizontalSeparatorPublication" />
 
 
 </RelativeLayout>

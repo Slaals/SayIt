@@ -8,10 +8,15 @@ import java.io.File;
 public class AudioItem {
 
     String id;
+    String date;
+    String author;
+
     File file;
 
-    public AudioItem(String id) {
+    public AudioItem(String id, String date, String author) {
         this.id = id;
+        this.date = date;
+        this.author = author;
     }
 
     public String getId() {
@@ -24,6 +29,18 @@ public class AudioItem {
 
     public File getFile() {
         return file;
+    }
+
+    public String getDate() {
+        return date.split(" ")[0];
+    }
+
+    public String getTime() {
+        return date.split(" ")[1];
+    }
+
+    public String getAuthor() {
+        return author;
     }
 
 }

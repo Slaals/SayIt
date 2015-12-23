@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -45,6 +46,7 @@ public class AudioListAdapter extends ArrayAdapter<AudioItem> {
     private String currentPlay;
     private ProgressBar currentProgressBar;
     private TextView currentAudioDuration;
+    private ImageButton currentPlayerControl;
 
     public AudioListAdapter(Context mContext, int layoutResourceId, List<AudioItem> data) {
         super(mContext, layoutResourceId, data);
@@ -65,18 +67,33 @@ public class AudioListAdapter extends ArrayAdapter<AudioItem> {
         final ProgressBar progressBar = (ProgressBar)convertView.findViewById(R.id.audioProgressBar);
         final TextView audioDuration = (TextView)convertView.findViewById(R.id.audioDuration);
 
+        TextView authorTextView = (TextView)convertView.findViewById(R.id.audioAuthorTextView);
+        authorTextView.setText(R.string.created);
+        authorTextView.append(" " + audioItem.getAuthor());
+        authorTextView.append(" " + audioItem.getDate());
+        authorTextView.append(" " + getContext().getString(R.string.date_at));
+        authorTextView.append(" " + audioItem.getTime());
+
         progressBar.setProgress(0);
         progressBar.setMax(100);
+        progressBar.setEnabled(false);
 
-        final Button playBtn = (Button)convertView.findViewById(R.id.playBtn);
-        playBtn.setOnClickListener(new View.OnClickListener() {
+        final ImageButton playerControl = (ImageButton)convertView.findViewById(R.id.playBtn);
+        playerControl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                if (currentPlayerControl != null) {
+                    currentPlayerControl.setImageResource(R.drawable.play);
+                }
+
                 currentProgressBar = progressBar;
                 currentAudioDuration = audioDuration;
+                currentPlayerControl = playerControl;
 
                 if (null == audioItem.getFile()) {
+                    player.stop();
+
                     String accessToken = getContext().getSharedPreferences(SharedPreferencesManager.USER_PREFERENCES, Context.MODE_PRIVATE)
                             .getString(SharedPreferencesManager.USER_PREFERENCES_PERMANENT_TOKEN, null);
 
@@ -90,7 +107,7 @@ public class AudioListAdapter extends ArrayAdapter<AudioItem> {
                         public void onApiCallSucceeded(JSONObject response) {
                             try {
                                 audioItem.setFile(new File(response.getString("file")));
-                                play(audioItem.getFile(), audioItem.getId());
+                                start(audioItem.getFile(), audioItem.getId());
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -98,7 +115,6 @@ public class AudioListAdapter extends ArrayAdapter<AudioItem> {
 
                         @Override
                         public void onApiCallFailed(JSONObject response) {
-
                         }
                     });
                 } else {
@@ -106,15 +122,14 @@ public class AudioListAdapter extends ArrayAdapter<AudioItem> {
                         if (player.isPlaying()) {
                             pause();
                         } else {
-                            unpause();
+                            play();
                         }
                     } else {
-                        play(audioItem.getFile(), audioItem.getId());
+                        start(audioItem.getFile(), audioItem.getId());
                     }
                 }
             }
         });
-
 
         return convertView;
     }
@@ -122,6 +137,8 @@ public class AudioListAdapter extends ArrayAdapter<AudioItem> {
     private void updateProgressBar() {
         handler.postDelayed(updateTimeTask, 100);
     }
+
+    private void stopProgressBar() { handler.removeCallbacks(updateTimeTask); }
 
     private Runnable updateTimeTask = new Runnable() {
         @Override
@@ -139,26 +156,31 @@ public class AudioListAdapter extends ArrayAdapter<AudioItem> {
 
                 handler.postDelayed(this, 100);
             } else {
-                handler.removeCallbacks(updateTimeTask, null);
+                currentPlayerControl.setImageResource(R.drawable.play);
             }
+
         }
     };
 
-    private void play(File file, String id) {
+    private void start(File file, String id) {
         player.stop();
         player = MediaPlayer.create(getContext(), Uri.fromFile(file));
-        player.start();
+        play();
 
         updateProgressBar();
 
         currentPlay = id;
     }
 
-    private void unpause() {
+    private void play() {
+        currentPlayerControl.setImageResource(R.drawable.pause);
+        updateProgressBar();
         player.start();
     }
 
     private void pause() {
+        currentPlayerControl.setImageResource(R.drawable.play);
+        stopProgressBar();
         player.pause();
     }
 

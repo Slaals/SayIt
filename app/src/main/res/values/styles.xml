@@ -23,7 +23,14 @@
     <style name="expressionToTranslate">
         <item name="android:background">@drawable/text_field</item>
         <item name="android:padding">10dp</item>
-        <item name="android:layout_marginBottom">25dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+    </style>
+
+    <style name="CharacterLimitation">
+        <item name="android:textColor">@color/OrangeSayIt</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginLeft">3dp</item>
     </style>
 
     <style name="langageField">
@@ -106,5 +113,53 @@
     <!-- Backward-compatible version of ?android:attr/buttonBarButtonStyle -->
     <style name="ButtonBarButton" />
     <!-- End of styles for item_expression_list.xml -->
+
+    <style name="PublicationFragment">
+        <item name="android:padding">15dp</item>
+    </style>
+
+    <style name="ChronoView">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/OrangeSayIt</item>
+    </style>
+
+    <style name="RecordLayout">
+        <item name="android:padding">15dp</item>
+    </style>
+
+    <style name="RecordButton">
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@drawable/round_button</item>
+        <item name="android:src">@drawable/microphone_white</item>
+        <item name="android:scaleType">fitCenter</item>
+    </style>
+
+    <style name="PublicationView">
+        <item name="android:background">@drawable/border</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="PlayButton">
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@drawable/round_button</item>
+        <item name="android:src">@drawable/play</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <style name="AudioBar">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:thumb">@drawable/seek_bar_thumb</item>
+        <item name="android:focusable">false</item>
+        <item name="android:enabled">false</item>
+        <item name="android:layout_marginLeft">5dp</item>
+    </style>
+
+    <style name="CreatorText">
+        <item name="android:textSize">8sp</item>
+        <item name="android:textColor">#555555</item>
+        <item name="android:layout_marginBottom">12dp</item>
+    </style>
+
 
 </resources>

@@ -212,10 +212,10 @@ public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
 
             // Not the best way, but have to go ahead
             if(urlConnection.getContentType().compareTo("application/ogg") == 0) {
-
                 File sampleDir = Environment.getExternalStorageDirectory();
 
                 File file = File.createTempFile("mbi", ".ogg", sampleDir);
+                file.deleteOnExit();
 
                 // write the inputStream to a FileOutputStream
                 OutputStream outputStream =

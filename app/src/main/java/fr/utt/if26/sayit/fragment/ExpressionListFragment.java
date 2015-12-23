@@ -77,7 +77,9 @@ public class ExpressionListFragment extends Fragment {
                                 currentPublicationNode.getString("text"),
                                 Country.getByIsoCode(currentPublicationNode.getString("language")),
                                 audio.length(),
-                                currentPublicationNode.getString("_id")
+                                currentPublicationNode.getString("_id"),
+                                currentPublicationNode.getJSONObject("created_by").getString("username"),
+                                currentPublicationNode.getString("created_at")
                         );
                         publicationList.add(exprItem);
                     }

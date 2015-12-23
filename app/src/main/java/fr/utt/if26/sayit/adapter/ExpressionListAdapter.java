@@ -38,11 +38,18 @@ public class ExpressionListAdapter extends ArrayAdapter<ExpressionItem> {
         ExpressionItem expressionItem = data.get(position);
         TextView textViewItem = (TextView) convertView.findViewById(R.id.expressionListTextViewItem);
         ImageView imageViewItem = (ImageView) convertView.findViewById(R.id.expressionListImageViewItem);
-        TextView numberItem = (TextView) convertView.findViewById((R.id.expressionListNumberItem));
+        TextView numberItem = (TextView) convertView.findViewById(R.id.expressionListNumberItem);
+        TextView authorView = (TextView) convertView.findViewById(R.id.expressionAuthorTextView);
 
         imageViewItem.setImageDrawable(mContext.getResources().getDrawable(expressionItem.getCountry().getDrawableResource()));
         textViewItem.setText(expressionItem.getItemName());
         numberItem.setText(expressionItem.getNumberAudio() + "");
+
+        authorView.setText(R.string.created);
+        authorView.append(" " + expressionItem.getAuthor());
+        authorView.append(" " + expressionItem.getDate());
+        authorView.append(" " + getContext().getString(R.string.date_at));
+        authorView.append(" " + expressionItem.getTime());
 
         return convertView;
     }
