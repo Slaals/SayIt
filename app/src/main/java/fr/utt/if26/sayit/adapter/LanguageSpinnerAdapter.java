@@ -13,13 +13,13 @@ import java.util.List;
 import fr.utt.if26.sayit.R;
 import fr.utt.if26.sayit.bean.Country;
 
-public class languageSpinnerAdapterOld extends ArrayAdapter<Country> {
+public class LanguageSpinnerAdapter extends ArrayAdapter<Country> {
 
     Context mContext;
     int layoutResourceId;
     List<Country> data = null;
 
-    public languageSpinnerAdapterOld(Context mContext, int layoutResourceId, List<Country> data) {
+    public LanguageSpinnerAdapter(Context mContext, int layoutResourceId, List<Country> data) {
         super(mContext, layoutResourceId, data);
         this.layoutResourceId = layoutResourceId;
         this.mContext = mContext;
