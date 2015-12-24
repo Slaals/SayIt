@@ -84,18 +84,21 @@ public class PublicationFragment extends Fragment {
                     case MotionEvent.ACTION_DOWN:
                         try {
                             Toast.makeText(getContext(), R.string.itsays_start_recording, Toast.LENGTH_LONG).show();
-                            startCounting();
                             ra.startRecording();
+                            startCounting();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
                         break;
                     case MotionEvent.ACTION_UP:
                         try {
-                            if (ra.isRecording()) {
+                            stopCounting();
+                            if (motionEvent.getEventTime() - motionEvent.getDownTime() > 1000) {
                                 ra.stopRecording();
 
                                 sendRecordToApi();
+                            } else {
+                                ra.stopRecording();
                             }
                         } catch (RuntimeException re) {
                             re.printStackTrace();
@@ -127,7 +130,7 @@ public class PublicationFragment extends Fragment {
 
                     JSONArray audioArray = publicationObj.getJSONArray("audio");
                     for (int i = 0; i < audioArray.length(); i++) {
-                        JSONObject audio = (JSONObject)audioArray.get(i);
+                        JSONObject audio = (JSONObject) audioArray.get(i);
                         AudioItem audioItem = new AudioItem(
                                 audio.getString("_id"),
                                 audio.getString("created_at"),
@@ -157,7 +160,6 @@ public class PublicationFragment extends Fragment {
     }
 
     private void sendRecordToApi() {
-        handler.removeCallbacks(updateCounter);
         durationLimit = LIMIT;
         counterView.setText("");
         File audioFile = ra.getAudioFile();
@@ -195,6 +197,10 @@ public class PublicationFragment extends Fragment {
     private void startCounting() {
         handler.postDelayed(updateCounter, 1000);
     }
+    private void stopCounting() {
+        System.out.println("STOP T");
+        counterView.setText("");
+        handler.removeCallbacks(updateCounter); }
 
     private Runnable updateCounter = new Runnable() {
         @Override
