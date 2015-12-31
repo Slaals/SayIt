@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
@@ -166,10 +167,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ItSaysEndpoints.UserEndpoints.logout(accessToken, getApplicationContext(), new ApiHttpClient.ApiCallFinished() {
                     @Override
                     public void onApiCallCompleted() {
-                    }
-
-                    @Override
-                    public void onApiCallSucceeded(JSONObject response) {
+                        /*
+                        Calling onApiCallCompleted instead of onApiCallSuceeded is crucial
+                        because if the user's token is invalid or the API is uncallable,
+                        the user will be blocked in a logged-in screen
+                        */
                         clearLoginCredentials();
                         Intent openLoginActivity = new Intent(MainActivity.this, LoginActivity.class);
                         startActivity(openLoginActivity);
@@ -179,6 +181,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         the the login screen and simply bypass it
                         */
                         finish();
+                    }
+
+                    @Override
+                    public void onApiCallSucceeded(JSONObject response) {
                     }
 
                     @Override

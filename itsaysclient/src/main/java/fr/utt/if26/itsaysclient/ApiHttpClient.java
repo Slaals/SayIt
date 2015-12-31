@@ -36,8 +36,7 @@ The three AsyncTask generics are respectively matching to :
 */
 public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
 
-    // TODO : change the production API root link (It currently point to a network dependant development machine)
-    private static final String API_ROOT_LINK = "http://192.168.1.85:8080/api";
+    private static final String API_ROOT_LINK = "http://itsays.pablo-prudhommeau.com:8127/api";
 
     private static final int CONNECTION_TIMEOUT = 5000;
 
@@ -277,7 +276,7 @@ public class ApiHttpClient extends AsyncTask<Void, Void, JSONObject> {
         callback.onApiCallCompleted();
         try {
             if (response.has("http_error")) {
-                Toast toast = Toast.makeText(context, context.getResources().getString(R.string.apiCommunicationError) + " : " + response.getString("http_error"), Toast.LENGTH_LONG);
+                Toast toast = Toast.makeText(context, context.getResources().getString(R.string.apiCommunicationError) + response.getString("http_error"), Toast.LENGTH_LONG);
                 toast.show();
             } else if (response.has("success")) {
                 if (response.getBoolean("success")) {

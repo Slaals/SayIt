@@ -31,4 +31,5 @@
     <string name="itsays_recorded">Félicitations ! Désormais, votre voix apprendra au monde entier comment prononcer cela !</string>
     <string name="itsays_start_recording">ItSays enregistre votre voix ! Restez appuyé, et lisez cette publication avec votre plus belle voix !</string>
     <string name="date_at">à</string>
+    <string name="logout_failed">Déconnexion échouée (côté API)</string>
 </resources>

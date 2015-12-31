@@ -8,6 +8,6 @@
     <string name="itsays_error_userAuthentificationFailed">Authentification échouée</string>
     <string name="itsays_error_userNotFound">Utilisateur introuvable</string>
     <string name="itsays_error_userSignUpFailed">Inscription échouée</string>
-    <string name="apiCommunicationError">Erreur IO à l\'appel de l\'API :</string>
-    <string name="unknownItSaysApiErrorCode">Code d\'erreur de l\'API inconnu :</string>
+    <string name="apiCommunicationError">Erreur IO à l\'appel de l\'API : </string>
+    <string name="unknownItSaysApiErrorCode">Code d\'erreur de l\'API inconnu : </string>
 </resources>

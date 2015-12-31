@@ -39,9 +39,6 @@ import fr.utt.if26.sayit.bean.ExpressionItem;
 import fr.utt.if26.sayit.utils.RecordAudio;
 import fr.utt.if26.sayit.utils.SharedPreferencesManager;
 
-/**
- * Created by Jonathan on 20/12/2015.
- */
 public class PublicationFragment extends Fragment {
 
     private final int LIMIT = 30;

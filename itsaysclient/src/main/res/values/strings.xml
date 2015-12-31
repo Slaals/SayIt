@@ -1,7 +1,7 @@
 <resources>
     <!-- Strings concerning internal library errors -->
-    <string name="apiCommunicationError">IO error while API call :</string>
-    <string name="unknownItSaysApiErrorCode">Unknown API error code :</string>
+    <string name="apiCommunicationError">IO error while API call : </string>
+    <string name="unknownItSaysApiErrorCode">Unknown API error code : </string>
 
     <!-- Strings concerning ItSays API errors -->
     <string name="itsays_error_invalidAccessToken">Invalid access token</string>

@@ -9,11 +9,11 @@
                 android:title="@string/drawerMenuNavigationPublish" />
             <item
                 android:id="@+id/drawerMenuNavigationPublications"
-                android:icon="@android:drawable/ic_menu_agenda"
+                android:icon="@android:drawable/ic_menu_gallery"
                 android:title="@string/drawerMenuNavigationPublications" />
             <item
                 android:id="@+id/drawerMenuNavigationLogout"
-                android:icon="@android:drawable/ic_menu_agenda"
+                android:icon="@android:drawable/ic_delete"
                 android:title="@string/drawerMenuNavigationLogout" />
         </menu>
     </item>

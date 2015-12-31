@@ -31,4 +31,5 @@
     <string name="itsays_recorded">Nice! Now your voice will teach the world how to pronounce it!</string>
     <string name="itsays_start_recording">ItSays is recording your voice! Stay push, and read the publication with your best accent!</string>
     <string name="date_at">at</string>
+    <string name="logout_failed">Logout failed (API side)</string>
 </resources>
