@@ -8,3 +8,5 @@ SayIt is an Android application which helps the user to get the good pronunciati
 4. Click clone
 5. When "Checkout From Version Control" window pop out, click "yes"
 6. When "Import Project From Gradle" window pop out, click "OK"
+
+PROJ-2 TES with com
