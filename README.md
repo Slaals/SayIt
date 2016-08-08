@@ -4,7 +4,7 @@ SayIt is an Android application which helps the user to get the good pronunciati
 ## Import project into Android Studio 1.5
 1. Open Android Studio
 2. Checkout project from Version Control (choose GitHub)
-3. Copy and paste "https://github.com/From-Far-Away/SayIt.git"
+3. Copy & paste "https://github.com/From-Far-Away/SayIt.git"
 4. Click clone
 5. When "Checkout From Version Control" window pop out, click "yes"
 6. When "Import Project From Gradle" window pop out, click "OK"
